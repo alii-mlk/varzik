@@ -41,10 +41,10 @@ function Trainning({ plans }) {
 
     return (
         <div className="rtl"> {/* Set the whole container to RTL */}
-            <Grid container spacing={5}>
 
-                {plans && plans.length > 0 ? (
-                    plans.map((plan) => (
+            {plans && plans.length > 0 ? (
+                <Grid container spacing={5}>
+                    {plans.map((plan) => (
                         <Grid size={6}>
                             <div
                                 key={plan.plan_id}
@@ -71,11 +71,13 @@ function Trainning({ plans }) {
                             </div>
                         </Grid>
 
-                    ))
-                ) : (
-                    <p className="text-right">هیچ برنامه‌ای موجود نیست.</p>
-                )}
-            </Grid>
+                    ))}
+                </Grid>
+            ) : (
+                <div style={{ display: "flex", justifyContent: "center", alignItems: "center", marginTop: "20px" }}>
+                    <p className='text-white'>هیچ برنامه‌ای موجود نیست.</p>
+                </div>
+            )}
 
 
 

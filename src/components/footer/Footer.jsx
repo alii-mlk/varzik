@@ -24,9 +24,6 @@ function Footer() {
         console.log(auth)
         if (auth.user) setUser(auth.user)
     }, [auth])
-    useEffect(() => {
-        console.log(user)
-    }, [user])
     if (!user) return undefined
     return (
         <div css={css`height:5vh;`} className='bg-[#331832] shadow-2xl w-full text-center'>

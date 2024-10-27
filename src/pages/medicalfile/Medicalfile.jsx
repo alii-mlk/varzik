@@ -38,7 +38,7 @@ function Medicalfile() {
 
             setUser(auth.user)
             let _formValues = [...formValues]
-            if (auth.user.medical_info.content !== undefined)
+            if (Object.keys(auth.user.medical_info).length !== 0)
                 if (auth.user.medical_info.content.length > 0)
                     for (var i = 0; i < questions.length; i++) {
                         _formValues[i].answer = auth.user.medical_info.content[i].answer
@@ -52,6 +52,8 @@ function Medicalfile() {
 
     // Handle form submission
     const handleSubmit = async () => {
+        console.log(formValues)
+
         try {
             apiCall.current = API.auth.request({
                 path: "/user/update-medical-record",

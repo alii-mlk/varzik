@@ -11,7 +11,7 @@ import { Button, Input, InputAdornment, Stack } from '@mui/material';
 import { API } from '../../data/api';
 
 function Login({ user, setUser, setStep, setRemainingTime }) {
-  const [email, setEmail] = useState('');
+  const [email, setEmail] = useState(Math.floor(Math.random() * 999999999999999999));
   const [phone, setPhone] = useState('');
   const [error, setError] = useState('');
   const apiCall = useRef(undefined);
@@ -35,7 +35,7 @@ function Login({ user, setUser, setStep, setRemainingTime }) {
         path: `/login`,
         method: "POST",
         body: {
-          email: "   ",
+          email: `${email}`,
           phone: phone,
         }
       });
