@@ -64,8 +64,10 @@ function OtpStep({ step, user, setUser, remainingTime, setRemainingTime }) {
             const token = response.token;
             // Store the token in localStorage for API requests
             localStorage.setItem('user-token', token);
+            setTimeout(() => {
+                auth.reloadUser()
+            }, 2000);
             // Call the check-token API to get user info
-            auth.reloadUser()
 
         }
         catch (err) {
@@ -79,8 +81,8 @@ function OtpStep({ step, user, setUser, remainingTime, setRemainingTime }) {
                 path: `/login`,
                 method: "POST",
                 body: {
-                    email: auth.user.email,
-                    phone: auth.user.phone,
+                    email: user.email,
+                    phone: user.phone,
                 }
             });
             let response = await apiCall.current.promise;
