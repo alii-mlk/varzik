@@ -38,10 +38,11 @@ function Medicalfile() {
 
             setUser(auth.user)
             let _formValues = [...formValues]
-            if (auth.user.medical_info.content.length > 0)
-                for (var i = 0; i < questions.length; i++) {
-                    _formValues[i].answer = auth.user.medical_info.content[i].answer
-                }
+            if (auth.user.medical_info.content !== undefined)
+                if (auth.user.medical_info.content.length > 0)
+                    for (var i = 0; i < questions.length; i++) {
+                        _formValues[i].answer = auth.user.medical_info.content[i].answer
+                    }
             console.log("_formValues", _formValues)
             setFormValues(_formValues)
         }

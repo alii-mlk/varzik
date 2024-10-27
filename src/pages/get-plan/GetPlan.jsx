@@ -65,10 +65,11 @@ export default function GetPlan() {
         else {
             setUser(auth.user)
             let _formValues = [...formValues]
-            if (auth.user.medical_info.content.length > 0)
-                for (var i = 0; i < questions.length; i++) {
-                    _formValues[i].answer = auth.user.medical_info.content[i].answer
-                }
+            if (auth.user.medical_info.content !== undefined)
+                if (auth.user.medical_info.content.length > 0)
+                    for (var i = 0; i < questions.length; i++) {
+                        _formValues[i].answer = auth.user.medical_info.content[i].answer
+                    }
             setFormValues(_formValues)
             if (auth.user.workout_info) {
                 setSliderValue(auth.user.workout_info.weight || 50);
