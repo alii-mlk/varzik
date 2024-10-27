@@ -157,15 +157,12 @@ function Coachlist() {
                                                 دریافت برنامه
                                             </button>
 
-                                            <Link to="/coachinfo">
-
-                                                <Link to={`/coachinfo/${coach.coach_id}`}>
-                                                    <button className="hover:bg-pink-700 w-32 h-10 border border-x-4 rounded-full flex justify-center items-center text-sm"> {/* Wider button */}
-                                                        اطلاعات بیشتر
-                                                    </button>
-                                                </Link>
-
+                                            <Link to={`/coach-info/${coach.coach_id}`}>
+                                                <button className="hover:bg-pink-700 w-32 h-10 border border-x-4 rounded-full flex justify-center items-center text-sm"> {/* Wider button */}
+                                                    اطلاعات بیشتر
+                                                </button>
                                             </Link>
+
                                         </div>
                                     </div>
                                 </div>
@@ -178,7 +175,7 @@ function Coachlist() {
 
             {/* Back button */}
             <div className="flex justify-center mt-48">
-                <Link to="/mainPage">
+                <Link to="/main-page">
                     <button className="hover:bg-pink-700 mt-[6rem] w-32 h-11 border border-x-4 rounded-full flex justify-center items-center text-xl">
                         بازگشت
                     </button>

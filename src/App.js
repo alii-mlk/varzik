@@ -1,7 +1,9 @@
+/* eslint-disable react/react-in-jsx-scope -- Unaware of jsxImportSource */
+/** @jsxImportSource @emotion/react */
+import { css } from '@emotion/react';
 import './App.css';
 import { useEffect } from 'react';
 import { BrowserRouter, Route, Routes, useLocation } from 'react-router-dom';
-import './App.css';
 // import { AuthProvider } from '../providers/auth_provider';
 import { BG_URL, PUBLIC_URL } from './utils/utils'
 import { AuthProvider } from './providers/auth_provider';
@@ -31,19 +33,18 @@ function App() {
     <BrowserRouter>
       <AuthProvider>
         <ScrollToTop>
-          <Header />
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/coach-bot" element={<CoachBot />} />
+            {/* <Route path="/coach-bot" element={<CoachBot />} /> */}
             <Route path="/coach-list" element={<Coachlist />} />
-            <Route path="/coach-prof" element={<Coachprof />} />
-            <Route path="/coach-students" element={<CoachStudents />} />
+            {/* <Route path="/coach-prof" element={<Coachprof />} /> */}
+            {/* <Route path="/coach-students" element={<CoachStudents />} /> */}
             <Route path="/coach-info/:coachid" element={<Coachinfo />} />
             <Route path="/edit" element={<Edit />} />
             <Route path="/get-plan" element={<GetPlan />} />
             <Route path="/goal" element={<Goal />} />
             <Route path="/info" element={<Info />} />
-            <Route path="/list-student" element={< Liststudent />} />
+            {/* <Route path="/list-student" element={< Liststudent />} /> */}
             <Route path="/login" element={<Login />} />
             <Route path="/main-page" element={< Mainpage />} />
             <Route path="/medical-file" element={< Medicalfile />} />
@@ -54,7 +55,6 @@ function App() {
             <Route path="/wikis" element={< Wikis />} />
           </Routes>
         </ScrollToTop>
-        <Footer />
       </AuthProvider >
     </BrowserRouter >
   );
@@ -65,10 +65,18 @@ function ScrollToTop({ children }) {
     window.scrollTo(0, 0);
   }, [pathname]);
 
-  return <div className={"h-screen overflow-hidden min-h-screen max-w-[430px] min-w-[350px] mx-auto flex flex-col justify-between"}>
-    <div className="h-full bg-no-repeat bg-right-top bg-cover overflow-y-auto scroll-hidden" style={{ backgroundImage: BG_URL(PUBLIC_URL("/images/45562.png")) }}>
-      <div className="bg-gray-500 bg-cover bg-opacity-75 h-full overflow-y-auto scroll-hidden">
-        {children}
+  return <div className={"h-screen  min-h-screen max-w-[430px] min-w-[350px] mx-auto flex flex-col justify-between"}>
+    <Header />
+    <div className="h-screen bg-no-repeat bg-right-top bg-cover overflow-y-auto scroll-hidden" style={{ backgroundImage: BG_URL(PUBLIC_URL("/images/45562.png")) }}>
+      <div className="bg-gray-500 bg-cover bg-opacity-75  overflow-y-auto scroll-hidden " css={css`min-height:90vh;`}>
+        <div css={css`position:relative;padding-bottom:6vh;min-height:90vh;`} className='overflow-y-auto scroll-hidden'>
+          <div className='px-4'>
+            {children}
+          </div>
+          <div css={css`position:absolute;bottom:0;width:100%;`}>
+            <Footer />
+          </div>
+        </div>
       </div>
     </div>
   </div>

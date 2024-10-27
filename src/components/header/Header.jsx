@@ -20,7 +20,7 @@ function Header() {
   };
 
   return (
-    <div style={{width:"100%"}} className='top-0 left-0 z-50 bg-[#331832] shadow-2xl min-w-[500px] text-center py-1 px-0'>
+    <div className='top-0 left-0 z-50 bg-[#331832] shadow-2xl w-full text-center py-1'>
       <div className='flex justify-between items-center'>
         {/* Profile Picture */}
         <div className='w-16 h-16 rounded-full ml-4 mx-4 bg-white overflow-hidden'>

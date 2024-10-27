@@ -1,3 +1,6 @@
+/* eslint-disable react/react-in-jsx-scope -- Unaware of jsxImportSource */
+/** @jsxImportSource @emotion/react */
+import { css } from '@emotion/react';
 import { MdDashboard } from "react-icons/md";
 import { GoHomeFill } from "react-icons/go";
 import { FaChalkboardTeacher } from "react-icons/fa";
@@ -26,14 +29,13 @@ function Footer() {
     }, [user])
     if (!user) return undefined
     return (
-        <div className='bottom-0 left-0 z-50 bg-[#331832] shadow-2xl w-full  text-center '>
-            <div className='flex justify-center gap-24 mt-4 items-center text-center   '>
-
+        <div css={css`height:5vh;`} className='bg-[#331832] shadow-2xl w-full text-center'>
+            <div className='flex justify-center gap-24 mt-4 items-center text-center'>
                 {user.access == 0 ? location.pathname.indexOf("/edit") != -1 ?
                     <Link to="/goal">
                         <button >
                             <GoGoal className={`
-                            ${location.pathname.indexOf("/goal") != -1  ? 'text-green-200' : 'text-white'} 
+                            ${location.pathname.indexOf("/goal") != -1 ? 'text-green-200' : 'text-white'} 
                             text-4xl shadow hover:shadow-pink-100`} />
                         </button>
                     </Link >
@@ -48,18 +50,18 @@ function Footer() {
                 }
 
 
-                <Link to="/mainPage">
+                <Link to="/main-page">
                     <button>
                         <GoHomeFill className={`
-                            ${location.pathname.indexOf("/mainpage") != -1 ?'text-green-200' : 'text-white'} 
+                            ${location.pathname.indexOf("/main-page") != -1 ? 'text-green-200' : 'text-white'} 
                             text-4xl shadow hover:shadow-pink-100`} />
                     </button>
                 </Link>
 
                 <Link to="/coach-list">
-                    <button >
+                    <button>
                         <IoMdList className={`
-                            ${location.pathname.indexOf("/coach-list") ? 'text-green-200' : 'text-white'} 
+                            ${location.pathname.indexOf("/coach-list") !=-1 ? 'text-green-200' : 'text-white'} 
                             text-4xl shadow hover:shadow-pink-100`} />
                     </button>
                 </Link>

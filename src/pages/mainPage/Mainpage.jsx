@@ -100,7 +100,7 @@ function Mainpage() {
               {bestCoaches.map((coach) => {
                 return <div
                   key={coach.id}
-                  className="bg-[#c6d8d3] border border-gray-200 rounded-lg shadow mt-5 w-64 h-80" // Wider and taller card 
+                  className="bg-[#c6d8d3] border border-gray-200 rounded-lg shadow w-64 h-80" // Wider and taller card 
                 >
                   <div className="flex flex-col items-center p-4">
 
@@ -112,7 +112,7 @@ function Mainpage() {
                     Coach details
                     <h5 className="mb-1 text-xl font-medium text-gray-900">{coach.username}</h5>
                     <div className="flex mt-4">
-                      <Link to={`/coachinfo/${coach.id}`}>
+                      <Link to={`/coach-info/${coach.id}`}>
                         <button className="hover:bg-pink-700 w-32 h-10 border border-x-4 rounded-full flex justify-center items-center text-sm">
                           اطلاعات بیشتر
                         </button>
