@@ -11,7 +11,11 @@ import { CircularProgress, Input, TextareaAutosize } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../providers/auth_provider';
 import { API } from '../../data/api';
-
+import Radio from '@mui/material/Radio';
+import RadioGroup from '@mui/material/RadioGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import FormControl from '@mui/material/FormControl';
+import FormLabel from '@mui/material/FormLabel';
 const questions = [
     { question: 'آیا تا کنون پزشک شما اشاره کرده است که شما دچار مشکل قلبی هستید و فقط باید فعالیت‌های جسمانی خاصی که توسط پزشک توصیه می‌شود را انجام دهید؟', answer: "false" },
     { question: 'آیا در هنگام انجام فعالیت‌های جسمانی در قفسه سینه خود احساس درد می‌کنید؟', answer: "false" },
@@ -39,7 +43,7 @@ export default function GetPlan() {
     const [successMessage, setSuccessMessage] = useState('');
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [loading, setLoading] = useState(true); // Set loading to true initially
-    const [prompt, setPrompt] = useState("")
+    const [value, setValue] = React.useState('3');
     const [planLoading, setPlanLoading] = useState()
     // State to manage checkboxes (default to empty values)
     const [formValues, setFormValues] = useState([
@@ -61,9 +65,10 @@ export default function GetPlan() {
         else {
             setUser(auth.user)
             let _formValues = [...formValues]
-            for (var i = 0; i < questions.length; i++) {
-                _formValues[i].answer = auth.user.medical_info.content[i].answer
-            }
+            if (auth.user.medical_info.content.length > 0)
+                for (var i = 0; i < questions.length; i++) {
+                    _formValues[i].answer = auth.user.medical_info.content[i].answer
+                }
             setFormValues(_formValues)
             if (auth.user.workout_info) {
                 setSliderValue(auth.user.workout_info.weight || 50);
@@ -79,6 +84,9 @@ export default function GetPlan() {
             setLoading(false); // Set loading to false after data is initialized
         }
     }, [auth]);
+    const handleChange = (event) => {
+        setValue(event.target.value);
+    };
 
     const handleNextClick = () => {
         console.log("handleNextClick userinfo", user);
@@ -170,7 +178,7 @@ export default function GetPlan() {
                 body: {
                     coach_id: auth.selectedCoachId,
                     level: auth.selectedCoachLvl,
-                    prompt: prompt
+                    prompt: `من درخواست برنامه برای ${value} روز در هفته را دارم`
                 }
             });
             let response = await apiCall.current.promise;
@@ -213,12 +221,25 @@ export default function GetPlan() {
                             <MedicalFileComponent onSubmit={handleSubmit} formValues={formValues} setFormValues={setFormValues} />
                             :
                             <div css={css`display:flex;flex-direction:column;gap:20px;justify-content:center;align-items:center;height:600px;`}>
-                                <TextareaAutosize
-                                    id="input-with-icon-adornment"
-                                    type='text' placeholder='شرح برنامه‌ی درخواستی' value={prompt} onChange={(e) => { setPrompt(e.target.value) }}
-                                    className='text-xl placeholder-gray-800 w-64 text-right'
-                                    css={css`justify-self:center;background-color:transparent;`}
-                                />
+                                <FormControl>
+
+                                    <h1>
+                                        تعداد روز های تمرینی
+                                    </h1>
+
+                                    <RadioGroup
+                                        value={value}
+                                        onChange={handleChange}
+                                    >
+                                        <FormControlLabel value="1" control={<Radio css={css`color:white !important;`} />} label="یک روز" />
+                                        <FormControlLabel value="2" control={<Radio css={css`color:white !important;`} />} label="دو روز" />
+                                        <FormControlLabel value="3" control={<Radio css={css`color:white !important;`} />} label="سه روز" />
+                                        <FormControlLabel value="4" control={<Radio css={css`color:white !important;`} />} label="چهار روز" />
+                                        <FormControlLabel value="5" control={<Radio css={css`color:white !important;`} />} label="پنج روز" />
+                                        <FormControlLabel value="6" control={<Radio css={css`color:white !important;`} />} label="شش روز" />
+                                        <FormControlLabel value="7" control={<Radio css={css`color:white !important;`} />} label="هفت روز" />
+                                    </RadioGroup>
+                                </FormControl>
                                 {
                                     planLoading ? <div css={css`display:flex;flex-direction:column;gap:20px;justify-content:center;align-items:center;`}>
                                         <CircularProgress />

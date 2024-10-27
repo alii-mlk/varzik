@@ -17,6 +17,7 @@ export default function AuthWrapper({ children, onClick }) {
         display: flex;
         height: 100%;
         flex-direction: column;
+        gap:50px;
         `}>
 
             <div css={css`display:flex;flex:1;justify-content:center;align-items:center;`}>

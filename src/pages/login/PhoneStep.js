@@ -26,7 +26,7 @@ function Login({ user, setUser, setStep, setRemainingTime }) {
     }
   }, [])
   const handleLogin = async () => {
-    if (!phone || !email) {
+    if (!phone) {
       setError('ایمیل یا شماره تلفن را پر کنید');
       return;
     }
@@ -35,7 +35,7 @@ function Login({ user, setUser, setStep, setRemainingTime }) {
         path: `/login`,
         method: "POST",
         body: {
-          email: email,
+          email: "   ",
           phone: phone,
         }
       });
@@ -63,7 +63,7 @@ function Login({ user, setUser, setStep, setRemainingTime }) {
   return (
     <div css={css`display:flex;flex-direction:column;gap:30px;justify-content:center;align-items:center;`}>
 
-      <Input
+      {/* <Input
         id="input-with-icon-adornment"
         startAdornment={
           <InputAdornment position="start">
@@ -75,7 +75,7 @@ function Login({ user, setUser, setStep, setRemainingTime }) {
         type='text' placeholder='ایمیل' value={email} onChange={(e) => { setEmail(e.target.value) }}
         className='text-xl placeholder-gray-800 w-64 text-right'
         css={css`justify-self:center;`}
-      />
+      /> */}
 
       <Input
         id="input-with-icon-adornment"

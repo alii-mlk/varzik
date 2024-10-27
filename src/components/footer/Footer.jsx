@@ -30,7 +30,7 @@ function Footer() {
     if (!user) return undefined
     return (
         <div css={css`height:5vh;`} className='bg-[#331832] shadow-2xl w-full text-center'>
-            <div className='flex justify-center gap-24 mt-4 items-center text-center'>
+            <div css={css`display:flex;align-items:center;flex-direction:row;justify-content:space-around;`}>
                 {user.access == 0 ? location.pathname.indexOf("/edit") != -1 ?
                     <Link to="/goal">
                         <button >
@@ -50,18 +50,18 @@ function Footer() {
                 }
 
 
-                <Link to="/main-page">
+                {/* <Link to="/main-page">
                     <button>
                         <GoHomeFill className={`
                             ${location.pathname.indexOf("/main-page") != -1 ? 'text-green-200' : 'text-white'} 
                             text-4xl shadow hover:shadow-pink-100`} />
                     </button>
-                </Link>
+                </Link> */}
 
                 <Link to="/coach-list">
                     <button>
                         <IoMdList className={`
-                            ${location.pathname.indexOf("/coach-list") !=-1 ? 'text-green-200' : 'text-white'} 
+                            ${location.pathname.indexOf("/coach-list") != -1 ? 'text-green-200' : 'text-white'} 
                             text-4xl shadow hover:shadow-pink-100`} />
                     </button>
                 </Link>

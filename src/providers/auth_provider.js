@@ -100,7 +100,6 @@ export function AuthProvider({ children }) {
                 method: "POST",
             })
             let response = await apiCall.current.promise;
-            console.log(response)
             if (!response.isSuccess) throw response
             setUser(undefined)
             setToken(undefined)

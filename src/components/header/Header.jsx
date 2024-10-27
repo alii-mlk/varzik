@@ -15,8 +15,12 @@ function Header() {
 
   // Logout function
   const handleLogout = () => {
+    setUser(undefined)
     auth.logout()
-    navigate('/login'); // Redirect to login after logout
+    setTimeout(() => {
+      auth.reloadUser()
+      navigate('/login'); // Redirect to login after logout
+    }, 2000);
   };
 
   return (

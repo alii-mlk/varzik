@@ -139,11 +139,11 @@ function User() {
                             />
                         </button>
 
-                        <button onClick={() => setActiveComponent('diet')}>
+                        {/* <button onClick={() => setActiveComponent('diet')}>
                             <BiSolidDish
                                 className={`text-4xl shadow ${activeComponent === 'diet' ? 'text-green-200' : 'text-black'}`}
                             />
-                        </button>
+                        </button> */}
 
                         <button onClick={() => setActiveComponent('coach')}>
                             <FaChalkboardTeacher
@@ -157,7 +157,7 @@ function User() {
                             loadingData ? <CircularProgress></CircularProgress> :
                                 <>
                                     {activeComponent === 'trainning' && <Trainning plans={user.plans} />}
-                                    {activeComponent === 'diet' && <Diet diets={user.diets} />}
+                                    {/* {activeComponent === 'diet' && <Diet diets={user.diets} />} */}
                                     {activeComponent === 'coach' && <Coach coaches={user.coaches} />}
                                 </>
                         }

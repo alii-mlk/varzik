@@ -144,7 +144,7 @@ function Coachlist() {
                                         {/* Coach details */}
                                         <h5 className="mb-1 text-xl font-medium text-gray-900">{coach.coach_username}</h5>
                                         <span className="text-sm text-gray-500">{coach.level}</span>
-                                        <span className="text-sm text-gray-500">قیمت: {parseInt(coach.price)} تومان</span>
+                                        {/* <span className="text-sm text-gray-500">قیمت: {parseInt(coach.price)} تومان</span> */}
                                         <div className="flex mt-4">
                                             <button
                                                 onClick={() => {
